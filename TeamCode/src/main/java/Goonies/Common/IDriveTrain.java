@@ -1,7 +1,7 @@
 package Goonies.Common;
 
 import com.pedropathing.follower.Follower;
-import com.pedropathing.localization.Pose;
+import com.pedropathing.geometry.Pose;
 
 public interface IDriveTrain {
     void setDriveMode(DriveMode driveMode);

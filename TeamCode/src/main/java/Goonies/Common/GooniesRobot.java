@@ -1,6 +1,6 @@
 package Goonies.Common;
 
-import com.pedropathing.localization.Pose;
+import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class GooniesRobot implements IRobot{

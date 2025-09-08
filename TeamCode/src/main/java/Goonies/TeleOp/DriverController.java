@@ -19,7 +19,7 @@ public class DriverController implements IController {
     public void HandleInput() {
         _robot.getDriveTrain()
                 .getFollower()
-                .setTeleOpMovementVectors(
+                .setTeleOpDrive(
                         _gamePad.getLeftY(),
                         -_gamePad.getLeftX(),
                         -_gamePad.getRightX(),
