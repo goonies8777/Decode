@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import Goonies.Common.GooniesRobot;
 import Goonies.Common.IRobot;
 
-@TeleOp(group = "Goonies", name = "MiniVinnie")
+@TeleOp(group = "Goonies", name = "BudhaBot")
 public class GooniesTeleOpMode extends LinearOpMode {
     IRobot _robot;
     IController _driverController;
