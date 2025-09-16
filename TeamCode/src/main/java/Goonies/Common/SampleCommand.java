@@ -1,6 +1,6 @@
 package Goonies.Common;
 
-import com.arcrobotics.ftclib.command.CommandBase;
+import com.seattlesolvers.solverslib.command.CommandBase;
 
 public class SampleCommand extends CommandBase {
 }

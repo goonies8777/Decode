@@ -1,6 +1,6 @@
 package Goonies.TeleOp;
 
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 
 import Goonies.Common.DriveMode;
 import Goonies.Common.IRobot;
