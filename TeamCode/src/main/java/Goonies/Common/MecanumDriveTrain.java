@@ -14,6 +14,7 @@ public class MecanumDriveTrain implements IDriveTrain{
     public MecanumDriveTrain(HardwareMap hardwareMap, Pose startingPose){
         _follower = Constants.createFollower(hardwareMap);
         _follower.setStartingPose(startingPose);
+        _follower.update();
     }
 
     @Override

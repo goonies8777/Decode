@@ -78,8 +78,8 @@ public class Tuning extends SelectableOpMode {
         } else {
             follower = Constants.createFollower(hardwareMap);
         }
-
         follower.setStartingPose(new Pose());
+
 
         poseHistory = follower.getPoseHistory();
 
@@ -522,7 +522,7 @@ class LateralVelocityTuner extends OpMode {
  */
 class ForwardZeroPowerAccelerationTuner extends OpMode {
     private final ArrayList<Double> accelerations = new ArrayList<>();
-    public static double VELOCITY = 30;
+    public static double VELOCITY = 45;
 
     private double previousVelocity;
     private long previousTimeNano;
@@ -626,7 +626,7 @@ class ForwardZeroPowerAccelerationTuner extends OpMode {
  */
 class LateralZeroPowerAccelerationTuner extends OpMode {
     private final ArrayList<Double> accelerations = new ArrayList<>();
-    public static double VELOCITY = 30;
+    public static double VELOCITY = 39;
     private double previousVelocity;
     private long previousTimeNano;
     private boolean stopping;

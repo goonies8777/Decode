@@ -17,6 +17,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
     public void runOpMode() {
         _robot = new GooniesRobot(hardwareMap);
         _driverController = new DriverController(_robot, new GamepadEx(this.gamepad1));
+        //_operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
         //_gamePad2 = new GamePad2(this.gamepad2 ,_robot);
 
         if (_robot != null) {
