@@ -1,5 +1,8 @@
 package Goonies.TeleOp;
 
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
+import com.pedropathing.geometry.Pose;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -20,15 +23,22 @@ public class GooniesTeleOpMode extends LinearOpMode {
         _driverController = new DriverController(_robot, new GamepadEx(this.gamepad1));
         _operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
 
+        Pose startingPose =  new Pose(48, 9, Math.toRadians(90));
+        TelemetryManager _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
+
         if (_robot != null) {
-            _robot.Initialize(false);
+            _robot.Initialize(false, startingPose);
         }else {
-            telemetry.addData("Robot", "Robot was not Instantiated");
-            telemetry.update();
+            _telemetryManager.debug("Robot", "Robot was not Instantiated");
         }
 
-        telemetry.addData("Status", "Operator Controlled Initialized");
-        telemetry.update();
+        if (_operatorController != null) {
+            _telemetryManager.debug("Status", "Operator Controlled Initialized");
+        }
+
+        if (_driverController != null) {
+            _telemetryManager.debug("Status", "Driver Controlled Initialized");
+        }
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -44,12 +54,9 @@ public class GooniesTeleOpMode extends LinearOpMode {
                 if (_operatorController != null) {
                     _operatorController.HandleInput();
                 }
-
-                telemetry.update();
             }
         } else {
-            telemetry.addData("GamePads", "No GamePads Instantiated");
-            telemetry.update();
+            _telemetryManager.debug("GamePads", "No GamePads Instantiated");
         }
     }
 }

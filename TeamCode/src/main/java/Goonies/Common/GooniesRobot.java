@@ -19,8 +19,12 @@ public class GooniesRobot implements IRobot{
     }
 
     @Override
-    public void Initialize(boolean forAutonomous) {
-        Pose startingPose = new Pose();
+    public void Initialize(boolean forAutonomous){
+        Pose startingPose = new Pose(0,0,90);
+        Initialize(forAutonomous, startingPose);
+    }
+
+    public void Initialize(boolean forAutonomous, Pose startingPose) {
         _mecanumDriveTrain = new MecanumDriveTrain(_hardwareMap, startingPose);
 
         DcMotor intakeMotor = _hardwareMap.get(DcMotor.class, "intake");

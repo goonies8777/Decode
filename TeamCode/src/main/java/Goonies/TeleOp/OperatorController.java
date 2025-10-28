@@ -1,20 +1,22 @@
 package Goonies.TeleOp;
 
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 
-import Goonies.Common.DriveMode;
 import Goonies.Common.IRobot;
 import Goonies.Common.RobotState;
-
 
 public class OperatorController implements IController{
     private final GamepadEx _gamePad;
     private final IRobot _robot;
+    private final TelemetryManager _telemetryManager;
 
     public OperatorController(IRobot robot, GamepadEx gamePad){
         _robot = robot;
         _gamePad = gamePad;
+        _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
     }
     @Override
     public void HandleInput()
@@ -70,5 +72,6 @@ public class OperatorController implements IController{
             }
         }
 
+        _telemetryManager.debug("Robot State:", _robot.getState().toString());
     }
 }
