@@ -6,8 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import Goonies.Common.GooniesRobot;
 import Goonies.Common.IRobot;
+import Goonies.Common.RobotState;
 
-@TeleOp(group = "Goonies", name = "BudhaBot")
+@TeleOp(group = "Goonies", name = "MiniVinnie")
 public class GooniesTeleOpMode extends LinearOpMode {
     IRobot _robot;
     IController _driverController;
@@ -17,8 +18,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
     public void runOpMode() {
         _robot = new GooniesRobot(hardwareMap);
         _driverController = new DriverController(_robot, new GamepadEx(this.gamepad1));
-        //_operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
-        //_gamePad2 = new GamePad2(this.gamepad2 ,_robot);
+        _operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
 
         if (_robot != null) {
             _robot.Initialize(false);
@@ -34,6 +34,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
         waitForStart();
 
         if ((_driverController != null || _operatorController != null)) {
+            _robot.setState(RobotState.Driving);
             // run until the end of the match (driver presses STOP)
             while (opModeIsActive()) {
                 if (_driverController != null) {
