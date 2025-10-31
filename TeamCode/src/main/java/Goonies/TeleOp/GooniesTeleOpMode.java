@@ -20,14 +20,14 @@ public class GooniesTeleOpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         _robot = new GooniesRobot(hardwareMap);
-        _driverController = new DriverController(_robot, new GamepadEx(this.gamepad1));
-        _operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
 
         Pose startingPose =  new Pose(48, 9, Math.toRadians(90));
         TelemetryManager _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
 
         if (_robot != null) {
             _robot.Initialize(false, startingPose);
+            _driverController = new DriverController(_robot, new GamepadEx(this.gamepad1));
+            _operatorController = new OperatorController(_robot, new GamepadEx(this.gamepad2));
         }else {
             _telemetryManager.debug("Robot", "Robot was not Instantiated");
         }
@@ -44,7 +44,6 @@ public class GooniesTeleOpMode extends LinearOpMode {
         waitForStart();
 
         if ((_driverController != null || _operatorController != null)) {
-            _robot.setState(RobotState.Driving);
             // run until the end of the match (driver presses STOP)
             while (opModeIsActive()) {
                 if (_driverController != null) {

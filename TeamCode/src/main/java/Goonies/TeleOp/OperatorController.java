@@ -72,6 +72,30 @@ public class OperatorController implements IController{
             }
         }
 
+        if (_gamePad.getButton(GamepadKeys.Button.Y)) {
+            _robot.getShooter().rampUp();
+        }
+
+        if (_gamePad.getButton(GamepadKeys.Button.A)) {
+            _robot.getShooter().stop();
+        }
+
+        if (_gamePad.getButton(GamepadKeys.Button.B)) {
+            _robot.getShooter().shoot();
+        }
+
+        if (_gamePad.getButton(GamepadKeys.Button.DPAD_UP)) {
+            _robot.getIntake().start();
+        }
+
+        if (_gamePad.getButton(GamepadKeys.Button.DPAD_DOWN)) {
+            _robot.getIntake().stop();
+        }
+
+        if (_gamePad.getButton(GamepadKeys.Button.DPAD_RIGHT)) {
+            _robot.getIntake().vomit();
+        }
+
         _telemetryManager.debug("Robot State:", _robot.getState().toString());
     }
 }

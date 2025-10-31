@@ -25,6 +25,8 @@ public class GooniesRobot implements IRobot{
     }
 
     public void Initialize(boolean forAutonomous, Pose startingPose) {
+        _state = RobotState.Driving;
+
         _mecanumDriveTrain = new MecanumDriveTrain(_hardwareMap, startingPose);
 
         DcMotor intakeMotor = _hardwareMap.get(DcMotor.class, "intake");

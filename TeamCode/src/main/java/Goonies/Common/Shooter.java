@@ -11,17 +11,21 @@ public class Shooter {
     private final DcMotor _rightMotor;
     private final Servo _servo;
     private final IConveyor _conveyor;
+    private double shooterSpeed = .75;
 
     public Shooter(DcMotor leftMotor, DcMotor rightMotor, Servo servo, IConveyor conveyor)
     {
         _leftMotor = leftMotor;
         _rightMotor = rightMotor;
 
+        _leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        _rightMotor.setDirection(DcMotor.Direction.REVERSE);
+
         _leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         _rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        _leftMotor.setDirection(DcMotor.Direction.REVERSE);
-        _rightMotor.setDirection(DcMotor.Direction.FORWARD);
+        _leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        _rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         _servo = servo;
         _conveyor = conveyor;
@@ -29,8 +33,8 @@ public class Shooter {
 
     public void rampUp()
     {
-        _leftMotor.setPower(1);
-        _rightMotor.setPower(1);
+        _leftMotor.setPower(shooterSpeed);
+        _rightMotor.setPower(shooterSpeed);
     }
 
     public void shoot()
