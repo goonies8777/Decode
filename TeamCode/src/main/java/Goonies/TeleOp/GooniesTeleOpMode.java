@@ -40,6 +40,10 @@ public class GooniesTeleOpMode extends LinearOpMode {
             _telemetryManager.debug("Status", "Driver Controlled Initialized");
         }
 
+        if (_robot != null) {
+            _robot.updateIndicators();
+        }
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
@@ -53,6 +57,8 @@ public class GooniesTeleOpMode extends LinearOpMode {
                 if (_operatorController != null) {
                     _operatorController.HandleInput();
                 }
+
+                _robot.updateIndicators();
             }
         } else {
             _telemetryManager.debug("GamePads", "No GamePads Instantiated");

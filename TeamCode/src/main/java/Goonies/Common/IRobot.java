@@ -9,6 +9,7 @@ public interface IRobot {
     IDriveTrain getDriveTrain();
     Intake getIntake();
     Shooter getShooter();
+    void updateIndicators();
     RobotState getState();
     void setState(RobotState state);
 }

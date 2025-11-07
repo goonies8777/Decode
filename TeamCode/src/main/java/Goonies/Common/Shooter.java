@@ -11,7 +11,7 @@ public class Shooter {
     private final DcMotor _rightMotor;
     private final Servo _servo;
     private final IConveyor _conveyor;
-    private double shooterSpeed = .75;
+    private double shooterSpeed = .80;
 
     public Shooter(DcMotor leftMotor, DcMotor rightMotor, Servo servo, IConveyor conveyor)
     {
@@ -39,8 +39,13 @@ public class Shooter {
 
     public void shoot()
     {
-        _servo.setPosition(1);
+        Timing.Timer timer = new Timing.Timer(1, TimeUnit.SECONDS);
         _servo.setPosition(0);
+
+        timer.start();
+        while(!timer.done()){}
+
+        _servo.setPosition(1);
     }
 
     private void advance()

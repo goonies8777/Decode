@@ -56,7 +56,7 @@ public class OperatorController implements IController{
         {
             if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
                 _robot.getShooter().stop();
-                _robot.setState(RobotState.Shooting);
+                _robot.setState(RobotState.Driving);
             }
 
             if (_gamePad.getButton(GamepadKeys.Button.Y)) {

@@ -49,8 +49,8 @@ public class DriverController implements IController {
         if (!automatedDrive) {
             _follower.setTeleOpDrive(
                     _gamePad.getLeftY(),
-                    -_gamePad.getLeftX(),
-                    -_gamePad.getRightX(),
+                    _gamePad.getLeftX(),
+                    _gamePad.getRightX(),
                     (_robot.getDriveTrain().getDriveMode() == DriveMode.ROBOT_CENTRIC));
             _follower.update();
         }
