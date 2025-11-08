@@ -12,4 +12,6 @@ public interface IRobot {
     void updateIndicators();
     RobotState getState();
     void setState(RobotState state);
+    boolean isAutomated();
+    void setAutomating(boolean isAutomating);
 }

@@ -11,65 +11,64 @@ import Goonies.Common.RobotState;
 public class OperatorController implements IController{
     private final GamepadEx _gamePad;
     private final IRobot _robot;
-    private final TelemetryManager _telemetryManager;
 
     public OperatorController(IRobot robot, GamepadEx gamePad){
         _robot = robot;
         _gamePad = gamePad;
-        _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
     }
     @Override
     public void HandleInput()
     {
-        if (_robot.getState() == RobotState.Driving)
+        switch(_robot.getState())
         {
-            if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
-                _robot.setState(RobotState.Intake);
-            }
+            case Driving:
+                HandleDrivingState();
+                break;
+            case Intake:
+                HandleIntakeState();
+                break;
+            case Shooting:
+                HandleShootingState();
+                break;
+        }
+    }
 
-            if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
-                _robot.setState(RobotState.Shooting);
-            }
+    private void HandleDrivingState()
+    {
+        if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
+            _robot.setState(RobotState.Intake);
         }
 
-        if (_robot.getState() == RobotState.Intake)
-        {
-            if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
-                _robot.getIntake().stop();
-                _robot.setState(RobotState.Driving);
-            }
+        if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
+            _robot.setState(RobotState.Shooting);
+        }
+    }
 
-            if (_gamePad.getButton(GamepadKeys.Button.Y)) {
-                _robot.getIntake().start();
-            }
-
-            if (_gamePad.getButton(GamepadKeys.Button.A)) {
-                _robot.getIntake().stop();
-            }
-
-            if (_gamePad.getButton(GamepadKeys.Button.B)) {
-                _robot.getIntake().vomit();
-            }
+    private void HandleIntakeState()
+    {
+        if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
+            _robot.getIntake().stop();
+            _robot.setState(RobotState.Driving);
         }
 
-        if (_robot.getState() == RobotState.Shooting)
-        {
-            if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
-                _robot.getShooter().stop();
-                _robot.setState(RobotState.Driving);
-            }
+        if (_gamePad.getButton(GamepadKeys.Button.Y)) {
+            _robot.getIntake().start();
+        }
 
-            if (_gamePad.getButton(GamepadKeys.Button.Y)) {
-                _robot.getShooter().rampUp();
-            }
+        if (_gamePad.getButton(GamepadKeys.Button.A)) {
+            _robot.getIntake().stop();
+        }
 
-            if (_gamePad.getButton(GamepadKeys.Button.A)) {
-                _robot.getShooter().stop();
-            }
+        if (_gamePad.getButton(GamepadKeys.Button.B)) {
+            _robot.getIntake().vomit();
+        }
+    }
 
-            if (_gamePad.getButton(GamepadKeys.Button.B)) {
-                _robot.getShooter().shoot();
-            }
+    private void HandleShootingState()
+    {
+        if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
+            _robot.getShooter().stop();
+            _robot.setState(RobotState.Driving);
         }
 
         if (_gamePad.getButton(GamepadKeys.Button.Y)) {
@@ -83,19 +82,5 @@ public class OperatorController implements IController{
         if (_gamePad.getButton(GamepadKeys.Button.B)) {
             _robot.getShooter().shoot();
         }
-
-        if (_gamePad.getButton(GamepadKeys.Button.DPAD_UP)) {
-            _robot.getIntake().start();
-        }
-
-        if (_gamePad.getButton(GamepadKeys.Button.DPAD_DOWN)) {
-            _robot.getIntake().stop();
-        }
-
-        if (_gamePad.getButton(GamepadKeys.Button.DPAD_RIGHT)) {
-            _robot.getIntake().vomit();
-        }
-
-        _telemetryManager.debug("Robot State:", _robot.getState().toString());
     }
 }

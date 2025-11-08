@@ -15,6 +15,7 @@ public class GooniesRobot implements IRobot{
     private IndicatorManager _indicatorManager;
 
     private RobotState _state;
+    private boolean _automated = false;
 
     public GooniesRobot(HardwareMap hardwareMap){
         _hardwareMap = hardwareMap;
@@ -80,6 +81,11 @@ public class GooniesRobot implements IRobot{
             _mecanumDriveTrain.getFollower().startTeleopDrive();
             _mecanumDriveTrain.getFollower().update();
         }
+
+        if (forAutonomous)
+        {
+            _automated = true;
+        }
     }
 
     @Override
@@ -106,5 +112,15 @@ public class GooniesRobot implements IRobot{
     public void setState(RobotState state)
     {
         _state = state;
+    }
+
+    @Override
+    public boolean isAutomated(){
+        return _automated;
+    }
+
+    @Override
+    public void setAutomating(boolean isAutomating) {
+        _automated = isAutomating;
     }
 }

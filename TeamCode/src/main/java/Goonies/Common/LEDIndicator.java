@@ -41,13 +41,19 @@ public class LEDIndicator implements IIndicator{
 
     @Override
     public void Update(RobotState robotState) {
-        if (robotState == RobotState.Driving){
-            showAmber();
-        } else if (robotState == RobotState.Shooting){
-            showGreen();
-        } else
-        if (robotState == RobotState.Intake){
-            showRed();
+        switch (robotState)
+        {
+            case Intake:
+                showRed();
+                break;
+            case Shooting:
+                showGreen();
+                break;
+            case Driving:
+            default:
+                showAmber();
+                break;
+
         }
     }
 }
