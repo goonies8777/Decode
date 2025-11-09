@@ -54,6 +54,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
             _robot.updateIndicators();
         }
 
+        Drawing.init();
         drawCurrent();
 
         // Wait for the game to start (driver presses PLAY)

@@ -26,41 +26,49 @@ public class DriverController implements IController {
 
     @Override
     public void HandleInput() {
+        //Stop automated following if the follower is done
+        if (_robot.isAutomated())
+        {
+            HandleAutomated();
+        }
+        else
+        {
+            HandleManual();
+        }
+    }
 
-        if (!_robot.isAutomated()) {
+    public void HandleAutomated()
+    {
+        if ((
+                !_gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER)
+                && !_gamePad.isDown(GamepadKeys.Button.LEFT_BUMPER)
+            )
+            || !_follower.isBusy()
+        ) {
+            _follower.startTeleopDrive();
+            _robot.setAutomating(false);
+        }
+    }
+
+    public void HandleManual()
+    {
+        if (_gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER))
+        {
+            _robot.setAutomating(true);
+            _follower.followPath(PathBuilder.shootingPath().get());
+        } else if (_gamePad.isDown(GamepadKeys.Button.LEFT_BUMPER))
+        {
+            _robot.setAutomating(true);
+            _follower.followPath(PathBuilder.parkingPath().get());
+        } else
+        {
             _follower.setTeleOpDrive(
                     _gamePad.getLeftY(),
                     _gamePad.getLeftX(),
                     _gamePad.getRightX(),
                     (_robot.getDriveTrain().getDriveMode() == DriveMode.ROBOT_CENTRIC));
             _follower.update();
-        }
 
-        if (!_robot.isAutomated() && _gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER))
-        {
-            _robot.setAutomating(true);
-            _follower.followPath(PathBuilder.shootingPath().get());
-        }
-
-        if (!_robot.isAutomated() && _gamePad.isDown(GamepadKeys.Button.LEFT_BUMPER))
-        {
-            _robot.setAutomating(true);
-            _follower.followPath(PathBuilder.parkingPath().get());
-        }
-
-        //Stop automated following if the follower is done
-        if (_robot.isAutomated() &&
-            (
-                (
-                    !_gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER)
-                    && !_gamePad.isDown(GamepadKeys.Button.LEFT_BUMPER)
-                )
-                || !_follower.isBusy()
-            )
-        )
-        {
-            _follower.startTeleopDrive();
-            _robot.setAutomating(false);
         }
     }
 }
