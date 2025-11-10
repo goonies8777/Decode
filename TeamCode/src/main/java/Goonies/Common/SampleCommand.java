@@ -1,6 +1,0 @@
-package Goonies.Common;
-
-import com.seattlesolvers.solverslib.command.CommandBase;
-
-public class SampleCommand extends CommandBase {
-}
