@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Goonies.TeleOp;
 import com.bylazar.telemetry.PanelsTelemetry;
 import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.Pose;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 
@@ -37,7 +38,7 @@ public class DriverController implements IController {
         }
     }
 
-    public void HandleAutomated()
+    private void HandleAutomated()
     {
         if ((
                 !_gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER)
@@ -50,7 +51,7 @@ public class DriverController implements IController {
         }
     }
 
-    public void HandleManual()
+    private void HandleManual()
     {
         if (_gamePad.isDown(GamepadKeys.Button.RIGHT_BUMPER))
         {
@@ -62,10 +63,17 @@ public class DriverController implements IController {
             _follower.followPath(PathBuilder.parkingPath().get());
         } else
         {
+            if (_gamePad.getButton(GamepadKeys.Button.Y)){
+                Pose currentPose = _follower.getPose();
+                currentPose.setHeading(Math.toRadians((0)));
+
+                _follower.setPose(currentPose);
+            }
+
             _follower.setTeleOpDrive(
                     _gamePad.getLeftY(),
-                    _gamePad.getLeftX(),
-                    _gamePad.getRightX(),
+                    -_gamePad.getLeftX(),
+                    -_gamePad.getRightX(),
                     (_robot.getDriveTrain().getDriveMode() == DriveMode.ROBOT_CENTRIC));
             _follower.update();
 

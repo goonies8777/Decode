@@ -73,6 +73,10 @@ public class OperatorController implements IController{
             _robot.getShooter().rampUp();
         }
 
+        if (_gamePad.getButton(GamepadKeys.Button.X)) {
+            _robot.getShooter().advance();
+        }
+
         if (_gamePad.getButton(GamepadKeys.Button.A)) {
             _robot.getShooter().stop();
         }

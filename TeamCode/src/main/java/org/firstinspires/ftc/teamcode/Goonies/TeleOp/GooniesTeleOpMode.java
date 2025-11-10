@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Goonies.Common.IRobot;
 import org.firstinspires.ftc.teamcode.Goonies.Common.PathBuilder;
 import org.firstinspires.ftc.teamcode.Goonies.Panels.Drawing;
 
-@TeleOp(group = "org/firstinspires/ftc/teamcode/Goonies", name = "MiniVinnie")
+@TeleOp(group = "Goonies", name = "MiniVinnie")
 public class GooniesTeleOpMode extends LinearOpMode {
     IRobot _robot;
     IController _driverController;
@@ -29,7 +29,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
         _robot = new GooniesRobot(hardwareMap);
 
         PanelsConfigurables.INSTANCE.refreshClass(this);
-        Pose startingPose =  new Pose(48, 9, Math.toRadians(90));
+        Pose startingPose =  new Pose(48, 9, Math.toRadians(0));
         TelemetryManager _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
 
         if (_robot != null) {
@@ -74,8 +74,6 @@ public class GooniesTeleOpMode extends LinearOpMode {
                 }
 
                 _robot.updateIndicators();
-                draw();
-                drawCurrentAndHistory();
 
                 _telemetryManager.debug("Robot State:", _robot.getState().toString());
                 _telemetryManager.debug("Position:", _robot.getDriveTrain().getFollower().getPose());
@@ -89,6 +87,9 @@ public class GooniesTeleOpMode extends LinearOpMode {
                 _telemetryManager.debug("total heading:" + _robot.getDriveTrain().getFollower().getTotalHeading());
 
                 _telemetryManager.update(telemetry);
+
+                draw();
+                drawCurrentAndHistory();
             }
         } else {
             _telemetryManager.debug("GamePads", "No GamePads Instantiated");

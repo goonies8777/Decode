@@ -29,14 +29,14 @@ public class LEDIndicator implements IIndicator{
 
     public void showAmber()
     {
-        _redLED.setState(true);
-        _greenLED.setState(true);
+        _redLED.setState(false);
+        _greenLED.setState(false);
     }
 
     public void off()
     {
-        _redLED.setState(false);
-        _greenLED.setState(false);
+        _redLED.setState(true);
+        _greenLED.setState(true);
     }
 
     @Override

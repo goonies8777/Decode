@@ -23,7 +23,7 @@ public class GooniesRobot implements IRobot{
 
     @Override
     public void Initialize(boolean forAutonomous){
-        Pose startingPose = new Pose(0,0,0);
+        Pose startingPose = new Pose(0,0,Math.toRadians(0));
         Initialize(forAutonomous, startingPose);
     }
 
