@@ -65,9 +65,9 @@ public class DriverController implements IController {
         {
             if (_gamePad.getButton(GamepadKeys.Button.Y)){
                 Pose currentPose = _follower.getPose();
-                currentPose.setHeading(Math.toRadians((0)));
+                Pose updatedHeading = new Pose(currentPose.getX(), currentPose.getY(), Math.toRadians(0));
 
-                _follower.setPose(currentPose);
+                _follower.setPose(updatedHeading);
             }
 
             _follower.setTeleOpDrive(
