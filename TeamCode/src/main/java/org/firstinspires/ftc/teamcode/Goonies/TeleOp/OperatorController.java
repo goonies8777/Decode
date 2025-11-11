@@ -33,18 +33,18 @@ public class OperatorController implements IController{
 
     private void HandleDrivingState()
     {
-        if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
+        if (_gamePad.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
             _robot.setState(RobotState.Intake);
         }
 
-        if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
+        if (_gamePad.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
             _robot.setState(RobotState.Shooting);
         }
     }
 
     private void HandleIntakeState()
     {
-        if (_gamePad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
+        if (_gamePad.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
             _robot.getIntake().stop();
             _robot.setState(RobotState.Driving);
         }
@@ -64,7 +64,7 @@ public class OperatorController implements IController{
 
     private void HandleShootingState()
     {
-        if (_gamePad.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
+        if (_gamePad.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
             _robot.getShooter().stop();
             _robot.setState(RobotState.Driving);
         }
@@ -73,8 +73,20 @@ public class OperatorController implements IController{
             _robot.getShooter().rampUp();
         }
 
-        if (_gamePad.getButton(GamepadKeys.Button.X)) {
-            _robot.getShooter().advance();
+        if (_gamePad.isDown(GamepadKeys.Button.DPAD_UP)) {
+            _robot.getShooter().startConveyor();
+        }
+
+        if (!_gamePad.isDown(GamepadKeys.Button.DPAD_UP)) {
+            _robot.getShooter().stopConveyor();
+        }
+
+        if (_gamePad.isDown(GamepadKeys.Button.DPAD_DOWN)) {
+            _robot.getShooter().startConveyor();
+        }
+
+        if (!_gamePad.isDown(GamepadKeys.Button.DPAD_DOWN)) {
+            _robot.getShooter().stopConveyor();
         }
 
         if (_gamePad.getButton(GamepadKeys.Button.A)) {

@@ -48,16 +48,24 @@ public class Shooter {
         _servo.setPosition(1);
     }
 
-    public void advance()
+    public void startConveyor()
     {
-        Timing.Timer timer = new Timing.Timer(3, TimeUnit.SECONDS);
+        if (!_conveyor.isRunning()) {
+            _conveyor.start();
+        }
+    }
 
-        _conveyor.start();
+    public void stopConveyor()
+    {
+        if (_conveyor.isRunning()) {
+            _conveyor.stop();
+        }
+    }
 
-        timer.start();
-        while(!timer.done()){}
-
-        _conveyor.stop();
+    public void reverseConveyor(){
+        if (!_conveyor.isRunning()){
+            _conveyor.reverse();
+        }
     }
 
     public void stop()

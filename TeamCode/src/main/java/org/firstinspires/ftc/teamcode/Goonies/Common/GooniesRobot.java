@@ -44,6 +44,8 @@ public class GooniesRobot implements IRobot{
         DcMotor leftMotor = _hardwareMap.get(DcMotor.class, "shooterLeft");
         DcMotor rightMotor = _hardwareMap.get(DcMotor.class, "shooterRight");
         Servo shooterServo = _hardwareMap.get(Servo.class, "shooter");
+        //Initialize the servo the the starting position.
+        shooterServo.setPosition(0);
 
         _shooter = new Shooter(leftMotor, rightMotor, shooterServo, conveyor);
 
