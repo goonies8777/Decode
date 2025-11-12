@@ -77,15 +77,11 @@ public class OperatorController implements IController{
             _robot.getShooter().reverseConveyor();
         }
 
-        if (!_gamePad.isDown(GamepadKeys.Button.X)) {
-            _robot.getShooter().stopConveyor();
-        }
-
         if (_gamePad.isDown(GamepadKeys.Button.DPAD_DOWN)) {
             _robot.getShooter().startConveyor();
         }
 
-        if (!_gamePad.isDown(GamepadKeys.Button.DPAD_DOWN)) {
+        if (!_gamePad.isDown(GamepadKeys.Button.X) && !_gamePad.isDown(GamepadKeys.Button.DPAD_DOWN)) {
             _robot.getShooter().stopConveyor();
         }
 
