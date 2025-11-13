@@ -29,7 +29,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
         _robot = new GooniesRobot(hardwareMap);
 
         PanelsConfigurables.INSTANCE.refreshClass(this);
-        Pose startingPose =  new Pose(48, 9, Math.toRadians(0));
+        Pose startingPose =  new Pose(96, 9, Math.toRadians(270));
         TelemetryManager _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
 
         if (_robot != null) {

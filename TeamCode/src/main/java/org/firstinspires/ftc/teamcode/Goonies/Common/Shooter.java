@@ -11,7 +11,7 @@ public class Shooter {
     private final DcMotor _rightMotor;
     private final Servo _servo;
     private final IConveyor _conveyor;
-    private double shooterSpeed = .90;
+    private double shooterSpeed = .70;
 
     public Shooter(DcMotor leftMotor, DcMotor rightMotor, Servo servo, IConveyor conveyor)
     {
