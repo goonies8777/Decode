@@ -11,7 +11,9 @@ public class Shooter {
     private final DcMotor _rightMotor;
     private final Servo _servo;
     private final IConveyor _conveyor;
-    private double shooterSpeed = .70;
+
+    private double _defaultShooterSpeed = .60;
+    private double _shooterSpeed = _defaultShooterSpeed;
 
     public Shooter(DcMotor leftMotor, DcMotor rightMotor, Servo servo, IConveyor conveyor)
     {
@@ -33,8 +35,8 @@ public class Shooter {
 
     public void rampUp()
     {
-        _leftMotor.setPower(shooterSpeed);
-        _rightMotor.setPower(shooterSpeed);
+        _leftMotor.setPower(_shooterSpeed);
+        _rightMotor.setPower(_shooterSpeed);
     }
 
     public void shoot()
@@ -72,5 +74,17 @@ public class Shooter {
     {
         _leftMotor.setPower(0);
         _rightMotor.setPower(0);
+    }
+
+    public void setShooterSpeed(double speed){
+        _shooterSpeed = speed;
+    }
+
+    public void resetShooterSpeed(){
+        _shooterSpeed = _defaultShooterSpeed;
+    }
+
+    public double shootingSpeed(){
+        return _shooterSpeed;
     }
 }

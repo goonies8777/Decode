@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
-            .mass(5.72).
+            .mass(9.82).
             forwardZeroPowerAcceleration(-88.2785372575144)
             .lateralZeroPowerAcceleration(-75.41607242984693);
 
@@ -42,10 +42,10 @@ public class Constants {
             .strafePodX(-5)
             .leftEncoder_HardwareMapName("leftBack")
             .rightEncoder_HardwareMapName("leftFront")
-            .strafeEncoder_HardwareMapName("rightFront")
+            .strafeEncoder_HardwareMapName("rightBack")
             .leftEncoderDirection(Encoder.FORWARD)
             .rightEncoderDirection(Encoder.FORWARD)
-            .strafeEncoderDirection(Encoder.FORWARD)
+            .strafeEncoderDirection(Encoder.REVERSE)
             .IMU_HardwareMapName("imu")
             .IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
 
@@ -58,7 +58,7 @@ public class Constants {
             .strafePodX(-5)
             .leftEncoder_HardwareMapName("leftBack")
             .rightEncoder_HardwareMapName("leftFront")
-            .strafeEncoder_HardwareMapName("rightFront")
+            .strafeEncoder_HardwareMapName("rightBack")
             .leftEncoderDirection(Encoder.FORWARD)
             .rightEncoderDirection(Encoder.FORWARD)
             .strafeEncoderDirection(Encoder.FORWARD);

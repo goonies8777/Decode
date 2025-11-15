@@ -29,7 +29,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
         _robot = new GooniesRobot(hardwareMap);
 
         PanelsConfigurables.INSTANCE.refreshClass(this);
-        Pose startingPose =  new Pose(96, 9, Math.toRadians(270));
+        Pose startingPose =  new Pose(48, 9, Math.toRadians(270));
         TelemetryManager _telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
 
         if (_robot != null) {
@@ -77,7 +77,7 @@ public class GooniesTeleOpMode extends LinearOpMode {
 
                 _telemetryManager.debug("Robot State:", _robot.getState().toString());
                 _telemetryManager.debug("Position:", _robot.getDriveTrain().getFollower().getPose());
-                _telemetryManager.debug("Velocity:", _robot.getDriveTrain().getFollower().getVelocity());
+                _telemetryManager.debug("Shooting Speed:", _robot.getShooter().shootingSpeed());
                 _telemetryManager.debug("Automated Drive:", _robot.isAutomated());
                 _telemetryManager.debug("Drive Mode:", _robot.getDriveTrain().getDriveMode().toString());
 

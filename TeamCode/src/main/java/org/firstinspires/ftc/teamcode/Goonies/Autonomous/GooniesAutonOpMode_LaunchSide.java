@@ -7,17 +7,15 @@ import com.pedropathing.geometry.Pose;
 import com.pedropathing.util.PoseHistory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Goonies.Common.GooniesRobot;
 import org.firstinspires.ftc.teamcode.Goonies.Common.IRobot;
+import org.firstinspires.ftc.teamcode.Goonies.Common.MecanumDriveTrain;
 import org.firstinspires.ftc.teamcode.Goonies.Common.PathBuilder;
 import org.firstinspires.ftc.teamcode.Goonies.Panels.Drawing;
-import org.firstinspires.ftc.teamcode.Goonies.TeleOp.DriverController;
-import org.firstinspires.ftc.teamcode.Goonies.TeleOp.OperatorController;
 
-@Autonomous(name="Goonies Auto Red 1", group="Goonies")
-public class GooniesAutonOpMode_Blue1 extends LinearOpMode {
+@Autonomous(name="Goonies Blue Launch Side", group="Goonies", preselectTeleOp="MiniVinnie")
+public class GooniesAutonOpMode_LaunchSide extends LinearOpMode {
     IRobot _robot;
 
     @IgnoreConfigurable
@@ -49,6 +47,10 @@ public class GooniesAutonOpMode_Blue1 extends LinearOpMode {
 
         waitForStart();
 
+        MecanumDriveTrain driveTrain = (MecanumDriveTrain)_robot.getDriveTrain();
+        driveTrain.driveForwardForMiliseconds(1000);
+
+        driveTrain.driveRightForMiliseconds(500);
     }
 
     public void draw() {

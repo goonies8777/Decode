@@ -7,11 +7,13 @@ import com.pedropathing.paths.Path;
 import com.pedropathing.paths.PathChain;
 import com.pedropathing.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import  com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.PedroPathing.Constants.Constants;
 
 @Autonomous(name = "Goonies Sample Auto", group = "Goonies")
+@Disabled
 public class GooniesAutonOpMode extends OpMode {
 
     private Follower follower;

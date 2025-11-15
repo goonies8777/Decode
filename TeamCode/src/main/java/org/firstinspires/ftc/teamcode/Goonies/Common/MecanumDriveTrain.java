@@ -2,13 +2,17 @@ package org.firstinspires.ftc.teamcode.Goonies.Common;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
+import com.pedropathing.util.Timer;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.seattlesolvers.solverslib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.PedroPathing.Constants.Constants;
 
+import java.util.concurrent.TimeUnit;
+
 public class MecanumDriveTrain implements IDriveTrain{
 
-    private DriveMode _driveMode = DriveMode.FIELD_CENTRIC;
+    private DriveMode _driveMode = DriveMode.ROBOT_CENTRIC;
     private final Follower _follower;
     //
     public MecanumDriveTrain(HardwareMap hardwareMap, Pose startingPose){
@@ -45,5 +49,65 @@ public class MecanumDriveTrain implements IDriveTrain{
     @Override
     public void setPose(Pose pose){
         _follower.setPose(pose);
+    }
+
+    public void driveForwardForMiliseconds(int miliseconds){
+        Timing.Timer timer = new Timing.Timer(miliseconds, TimeUnit.MILLISECONDS);
+
+        _follower.startTeleOpDrive();
+
+        timer.start();
+
+        while(!timer.done()) {
+            _follower.setTeleOpDrive(0.5, 0, 0, true);
+            _follower.update();
+        }
+
+        _follower.setTeleOpDrive(0,0,0, true);
+    }
+
+    public void driveBackwardForMiliseconds(int miliseconds){
+        Timing.Timer timer = new Timing.Timer(miliseconds, TimeUnit.MILLISECONDS);
+
+        _follower.startTeleOpDrive();
+
+        timer.start();
+
+        while(!timer.done()) {
+            _follower.setTeleOpDrive(-0.5, 0, 0, true);
+            _follower.update();
+        }
+
+        _follower.setTeleOpDrive(0,0,0, true);
+    }
+
+    public void driveLeftForMiliseconds(int miliseconds){
+        Timing.Timer timer = new Timing.Timer(miliseconds, TimeUnit.MILLISECONDS);
+
+        _follower.startTeleOpDrive();
+
+        timer.start();
+
+        while(!timer.done()) {
+            _follower.setTeleOpDrive(0, 0.5, 0, true);
+            _follower.update();
+        }
+
+        _follower.setTeleOpDrive(0,0,0, true);
+    }
+
+    public void driveRightForMiliseconds(int miliseconds){
+        Timing.Timer timer = new Timing.Timer(miliseconds, TimeUnit.MILLISECONDS);
+
+        _follower.startTeleOpDrive();
+
+        timer.start();
+
+        while(!timer.done()) {
+            _follower.setTeleOpDrive(0, -0.5, 0, true);
+            _follower.update();
+        }
+
+        _follower.setTeleOpDrive(0,0,0, true);
     }
 }
