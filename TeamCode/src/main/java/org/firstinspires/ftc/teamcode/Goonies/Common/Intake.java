@@ -13,7 +13,7 @@ public class Intake {
     {
         _motor = motor;
         _motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        _motor.setDirection(DcMotor.Direction.FORWARD);
+        _motor.setDirection(DcMotor.Direction.REVERSE);
 
         _conveyor = conveyor;
     }
@@ -34,7 +34,7 @@ public class Intake {
     {
         Timing.Timer timer = new Timing.Timer(2, TimeUnit.SECONDS);
 
-        _motor.setDirection(DcMotor.Direction.REVERSE);
+        _motor.setDirection(DcMotor.Direction.FORWARD);
         _motor.setPower(1);
         _conveyor.reverse();
 
@@ -43,6 +43,6 @@ public class Intake {
 
         _conveyor.stop();
         _motor.setPower(0);
-        _motor.setDirection(DcMotor.Direction.FORWARD);
+        _motor.setDirection(DcMotor.Direction.REVERSE);
     }
 }
